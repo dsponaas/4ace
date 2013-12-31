@@ -14,6 +14,7 @@ public class CodeGen {
 
 	public static void performAllCodeGen() {
 		generateJavaCode( "NewsItem", newsFields, true );
+		generateJavaCode( "ErrorLog", errorLogFields, false );
 	}
 	
 	private static void generateJavaCode( String className, String[][] fieldArray, boolean hasPrimaryKey ) {
@@ -300,6 +301,15 @@ public class CodeGen {
 		{ "_title", "Title", "String", "varchar(32)", "false", "false" },
 		{ "_content", "Content", "String", "varchar(1024)", "false", "false" },
 		{ "_timestamp", "Timestamp", "Date", "datetime", "false", "true" }
+	};
+	
+	private static final String[][] errorLogFields = new String[][] {
+		{ "_logLevel", "LogLevel", "int", "integer", "false", "true" },
+		{ "_sourceClass", "SourceClass", "String", "varchar(32)", "true", "true" },
+		{ "_sourceMethod", "SourceMethod", "String", "varchar(64)", "true", "true" },
+		{ "_message", "Message", "String", "varchar(256)", "true", "true" },
+		{ "_timestamp", "Timestamp", "Date", "datetime", "false", "true" },
+		{ "_dirty", "Dirty", "boolean", "boolean", "false", "false" }
 	};
 	
 }
